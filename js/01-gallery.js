@@ -20,13 +20,17 @@ gallery.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 gallery.addEventListener('click', handlerClickGallery);
 
 function handlerClickGallery(e) {
+  if (e.target === e.currentTarget) {
+    return;
+  }
     e.preventDefault();
-    e.stopPropagation();
+   
   const instance = basicLightbox.create(
-    `<img src ="${e.target.dataset.source}"alt="${e.target.description}"
-  width="1300"height="900"data-source="${e.target.dataset.source}"`,
+    `<img src ="${e.target.dataset.source}"alt="${e.target.alt}"
+  width="1300"height="900"`,
     {
       onShow: onEscKey,
+      onClose: onEscKey,
     }
   ) 
   instance.show();
