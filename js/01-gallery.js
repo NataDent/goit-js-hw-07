@@ -18,16 +18,23 @@ function createMarkup(arr) {
 gallery.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 
 gallery.addEventListener('click', handlerClickGallery);
- 
+
 function handlerClickGallery(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e.target.dataset)
+  const instance = basicLightbox.create(
+    `<img src ="${e.target.dataset.source}"alt="${e.target.description}"
+  width="1300"height="900"data-source="${e.target.dataset.source}"`,
+    {
+      onShow: onEscKey,
+    }
+  ) 
+  instance.show();
+  window.addEventListener("keydown", onEscKey);
 }
 
-// function findGalleryItem() {
-//     const ({ source }) = item.dataset;
-//    galleryItems.find(item => item.original === source);    
-   
-// }
-// function addModalWindow()
+function onEscKey(evt) {
+  if (evt.code === "Escape") {
+    instance.close();
+  }
+}
