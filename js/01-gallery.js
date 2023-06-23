@@ -31,10 +31,10 @@ function handlerClickGallery(e) {
   ) 
   instance.show();
   window.addEventListener("keydown", onEscKey);
-}
 
-function onEscKey(evt) {
-  if (evt.code === "Escape") {
+function onEscKey(e) {
+  if (e.code === "Escape") {
     instance.close();
   }
+}
 }
