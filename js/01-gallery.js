@@ -20,21 +20,25 @@ gallery.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 gallery.addEventListener('click', handlerClickGallery);
 
 function handlerClickGallery(e) {
-  if (e.target === e.currentTarget) {
+  if (!e.target ) {
     return;
   }
     e.preventDefault();
    
   const instance = basicLightbox.create(
-    `<img src ="${e.target.dataset.source}"alt="${e.target.alt}"
-  width="1300"height="900"`,
+    `<img src="${e.target.dataset.source}" alt="${e.target.alt}"
+  width="1300" height="900"/>`,
     {
-      onShow: onEscKey,
-      onClose: onEscKey,
+      onShow: () => {
+        window.addEventListener("keydown", onEscKey);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", onEscKey);
+      },
     }
   ) 
   instance.show();
-  window.addEventListener("keydown", onEscKey);
+  ;
 
 function onEscKey(e) {
   if (e.code === "Escape") {
