@@ -14,16 +14,6 @@ function createMarkup(arr) {
 }
 gallery.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 
-gallery.addEventListener('click', handlerClickGallery);
 
-function handlerClickGallery(e) {
-   e.preventDefault();
-   if (!e.target ) {
-      return;
-   }
-      console.log(e.target);
-   // var lightbox = $('.gallery a').simpleLightbox({ captionDelay: 250 });
-   var lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
-   return lightbox;
-}
-
+ new SimpleLightbox('.gallery a', { captionDelay: 250 });
+ 
