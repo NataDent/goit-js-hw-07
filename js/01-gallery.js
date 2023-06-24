@@ -20,11 +20,12 @@ gallery.insertAdjacentHTML('beforeend', createMarkup(galleryItems));
 gallery.addEventListener('click', handlerClickGallery);
 
 function handlerClickGallery(e) {
-  if (!e.target ) {
+  console.dir(e.target);
+  e.preventDefault();
+  if (e.target === gallery) {
     return;
   }
-    e.preventDefault();
-   
+
   const instance = basicLightbox.create(
     `<img src="${e.target.dataset.source}" alt="${e.target.alt}"
   width="1300" height="900"/>`,
